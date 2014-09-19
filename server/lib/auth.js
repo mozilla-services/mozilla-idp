@@ -20,7 +20,7 @@ const ldap = require('ldapjs'),
 });
 
 // preload the binary cert / key files
-if (config.get('ldap_server_use_client_cert') == true) {
+if (config.get('ldap_server_use_client_cert') === true) {
   var CLIENT_CERT_DATA = fs.readFileSync(config.get('ldap_server_client_cert'));
   var CLIENT_KEY_DATA = fs.readFileSync(config.get('ldap_server_client_key'));
 }
@@ -45,11 +45,11 @@ function createClient(opts, cb) {
     connectTimeout: opts.connectTimeout || config.get('ldap_server_connect_timeout')
   };
 
-  if (opts.url.substring(0, 8) == 'ldaps://' && opts.use_client_cert == true) {
+  if (opts.url.substring(0, 8) === 'ldaps://' && opts.use_client_cert === true) {
     connectOpts.tlsOptions = {
       cert: CLIENT_CERT_DATA,
       key: CLIENT_KEY_DATA
-    }
+    };
   }
 
   cb = _.once(cb);
