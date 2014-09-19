@@ -7,10 +7,8 @@ before_script:
  - scripts/gen_keys.js
 
 node_js:
- - "0.8"
  - "0.10"
 
 notifications:
   email:
-    - lloyd@hilaiel.com
     - bwong@mozilla.com
