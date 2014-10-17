@@ -542,11 +542,3 @@ input:disabled {
   }
 
 }
-
-.error {
-  margin-top: 10px;
-}
-
-.error a {
-  color: #000;
-}
