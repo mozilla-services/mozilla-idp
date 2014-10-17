@@ -1,5 +1,5 @@
 [![Build
-Status](https://travis-ci.org/mozilla/vinz-clortho.png?branch=master)](https://travis-ci.org/mozilla/vinz-clortho)
+Status](https://api.travis-ci.org/mozilla-services/mozilla-idp.png?branch=master)](https://travis-ci.org/mozilla-services/mozilla-idp)
 
 # Mozilla IdP
 
