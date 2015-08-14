@@ -22,15 +22,3 @@ This is the process for getting new code into Production
 1. Have QA test to make sure everything is OK
 1. *if* tests pass, create new production systems from same version. Otherwise
    go back to step 1. to fix issues.
-
-## Why the RPM?
-
-This is a quick introduction to how the Service Ops. team deploys Mozilla IdP.
-For security and operational reasons we turn the application into an RPM and
-deploy from our private RPM repository. 
-
-This allows us to maintain a package that can be audited as well as very
-specific versioning using RPMs. 
-
-The scripts and processes for building the RPM exists in the
-mozilla-services/svcops-oompaloompas repository.
