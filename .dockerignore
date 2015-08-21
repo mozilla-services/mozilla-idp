@@ -1,2 +1,6 @@
 .git
 node_modules
+server/config/*.json
+server/config/*.pem
+server/config/*.csr
+server/var
