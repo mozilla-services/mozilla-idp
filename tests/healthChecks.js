@@ -88,5 +88,44 @@ describe('Health Checking', function() {
         );
     });
 
+    // check Dockerflow endpoints
+    it('should return 200 on __heartbeat__ OK', function(done) {
+        request(
+            util.format('%s%s', serverURL, "/__heartbeat__"), 
+            function(err, resp, body) {
+                resp.statusCode.should.equal(200);
+                resp.body.should.equal("OK");
+                done();
+            }
+        );
+    });
+
+    it('should return 200 on __lbheartbeat__ OK', function(done) {
+        request(
+            util.format('%s%s', serverURL, "/__lbheartbeat__"), 
+            function(err, resp, body) {
+                resp.statusCode.should.equal(200);
+                resp.body.should.equal("OK");
+                done();
+            }
+        );
+    });
+
+    it('should return 200 on __version__ OK', function(done) {
+        request(
+            util.format('%s%s', serverURL, "/__version__"), 
+            function(err, resp, body) {
+                resp.statusCode.should.equal(200);
+                verObj = JSON.parse(resp.body);
+                verObj.should.have.property('commit');
+                verObj.should.have.property('source');
+                verObj.should.have.property('version');
+                verObj.should.have.property('build');
+                done();
+            }
+        );
+    });
+
+
 });
 

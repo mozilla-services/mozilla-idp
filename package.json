@@ -7,15 +7,15 @@
     "type": "MPL 2.0",
     "url": "https://mozilla.org/MPL/2.0/"
   }],
-  "homepage": "https://github.com/mozilla/vinz-clortho",
-  "bugs": "https://github.com/mozilla/vinz-clortho/issues",
+  "homepage": "https://github.com/mozilla-services/mozilla-idp",
+  "bugs": "https://github.com/mozilla-services/mozilla-idp/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla/vinz-clortho"
+    "url": "https://github.com/mozilla-services/mozilla-idp"
   },
   "main": "clortho",
   "engines": {
-    "node": "~0.6.10"
+    "node": "~0.10"
   },
   "dependencies": {
     "client-sessions": "0.3.0",
@@ -46,7 +46,7 @@
     "optimist": "0.6.0"
   },
   "scripts": {
-    "start": "LOCAL_DEV=true node ./server/bin/clortho",
+    "start": "node ./server/bin/clortho",
     "test": "LOCAL_DEV=true mocha -R spec tests/",
     "preinstall": "node ./scripts/lockdown.js"
   }

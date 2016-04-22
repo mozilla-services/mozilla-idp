@@ -1,7 +1,10 @@
-FROM node:0.10.44
+FROM node:0.10.44-slim
+
+# Use this to build a slimmer (~500MB) image for the app
+# use Dockerflow to build all the compiled assets and 
+# this one to bundle into an image for running
 
 WORKDIR /app
-
 
 # add a non-privileged user for installing and running
 # the application
@@ -12,18 +15,8 @@ RUN groupadd --gid 10001 app && \
 RUN apt update && \
     apt install -y libgmp-dev
 
-# Install node requirements and clean up unneeded cache data
-COPY package.json package.json
-
-RUN npm install && \
-    rm -rf /root/.node-gyp && \
-    apt-get clean
-
+# docker 
 COPY . /app
-
-# generates a placeholder set of pub/private keys
-# make sure to overide these in an actual deployment
-RUN ./scripts/gen_keys.js
 
 ENTRYPOINT ["npm"]
 CMD ["start"]

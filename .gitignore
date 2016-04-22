@@ -8,3 +8,4 @@
 locale
 /node_modules
 /rpmbuild
+dockerbuild
