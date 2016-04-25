@@ -4,3 +4,6 @@ server/config/*.json
 server/config/*.pem
 server/config/*.csr
 server/var
+dockerbuild
+circle.yml
+.travis.yml

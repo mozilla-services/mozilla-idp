@@ -135,6 +135,11 @@ app.get('/provision', routes.provision);
 app.get('/node_status', routes.elb_check);
 app.get('/ldap_status', routes.checkStatus);
 
+// Dockerflow
+app.get('/__lbheartbeat__', routes.elb_check);
+app.get('/__heartbeat__', routes.checkStatus);
+app.get('/__version__', routes.version);
+
 // APIs
 app.get('/api/session_context', routes.session_context);
 app.post('/api/sign_in', validate({

@@ -14,6 +14,18 @@ emailRewrite = require('./lib/email_rewrite.js'),
       secLog = require('./lib/security_logging'),
          url = require('url');
 
+var versionData;
+try {
+  versionData = require('../version.json');
+} catch(e) {
+  versionData = {
+    commit: "not found",
+    source: "not found",
+    version: "not found",
+    build: "not found"
+  };
+}
+
 // apply X-Content-Security-Policy headers to HTML resources served
 function applyContentSecurityPolicy(res) {
   ['X-Content-Security-Policy','Content-Security-Policy'].forEach(function(header) {
@@ -25,6 +37,12 @@ function applyContentSecurityPolicy(res) {
 
 exports.routes = function () {
   return {
+    lbheartbeat: function(req, resp) { resp.send(200); },
+
+    version: function(req, resp) {
+      resp.send(versionData);
+    },
+
     well_known_browserid: function (req, resp) {
       var pk = crypto.pubKey;
       resp.setHeader('Content-Type', 'application/json');
