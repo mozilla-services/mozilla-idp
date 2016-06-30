@@ -23,7 +23,8 @@ const config = require('../lib/configuration'),
       logger = require('../lib/logging').logger,
       font_middleware = require("connect-fonts"),
       opensans = require("connect-fonts-opensans"),
-      validate = require('../lib/validate');
+      validate = require('../lib/validate'),
+      serveStatic = require('serve-static');
 
 // log uncaught exceptions
 process.on('uncaughtException', function(err) {
@@ -155,7 +156,8 @@ app.post('/api/provision', validate({
 app.get('/signout', routes.signout);
 
 // static files
-app.use(express.static(path.join(process.cwd(), '..', 'static')));
+//app.use(express.static(path.join(process.cwd(), '..', 'static')));
+app.use(serveStatic(path.join(process.cwd(), '..', 'static')));
 app.use(routes.handle404);
 
 var dntPolicy = fs.readFileSync(path.join(process.cwd(), '..', 'static', 'dnt-policy.txt')).toString();

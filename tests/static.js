@@ -100,4 +100,16 @@ describe('static file serving', function() {
         done();
       });
   });
+
+  it('should not redirect to protocol-relative locations', function(done) {
+    request(
+      util.format('%s%s', serverURL, "///example.com/%2e%2e"),
+      function(err, resp, body) {
+        should.not.exist(err);
+        (resp.statusCode).should.equal(404);
+
+        done();
+      });
+  });
+
 });
