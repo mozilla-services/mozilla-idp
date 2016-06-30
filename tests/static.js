@@ -101,15 +101,29 @@ describe('static file serving', function() {
       });
   });
 
-  it('should not redirect to protocol-relative locations', function(done) {
-    request(
-      util.format('%s%s', serverURL, "///example.com/%2e%2e"),
-      function(err, resp, body) {
-        should.not.exist(err);
-        (resp.statusCode).should.equal(404);
+  it('should strip protocol-relative locations from redirect', function(done) {
+    request({
+      uri: util.format('%s%s', serverURL, "///example.com/%2e%2e"),
+      followRedirect: false
+    }, function(err, resp, body) {
+      should.not.exist(err);
+      (resp.statusCode).should.equal(301);
+      (resp.headers['location']).should.equal("/example.com/%2e%2e/");
 
-        done();
-      });
+      done();
+    });
+  });
+
+  it('should 404 on non-existent directory', function(done) {
+    request({
+      uri: util.format('%s%s', serverURL, "/example.com/%2e%2e/"),
+      followRedirect: false
+    }, function(err, resp, body) {
+      should.not.exist(err);
+      (resp.statusCode).should.equal(404);
+
+      done();
+    });
   });
 
 });
