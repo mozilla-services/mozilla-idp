@@ -125,6 +125,19 @@ app.use(function(req, res, next) {
   next();
 });
 
+// patch for bug: 1283431
+// express used by mozilla-idp will redirect to another website
+// ie, curl -i host:port///mozilla.org/%2f%2e%2e will 301 to mozilla.org/%2f%2e%2e
+// workaround for all paths starting with //.* to just redirect to /
+app.use(function(req, res, next) {
+  if (req.path.substring(0,2) == '//') {
+    res.redirect('/', 301);
+    return
+  }
+
+  next();
+});
+
 // documents
 app.get('/.well-known/browserid', routes.well_known_browserid);
 app.get('/', routes.welcome);
